@@ -48,8 +48,50 @@ public class Registration {
     public void setRegisterRePassword(String password){
         registerRePassword.sendKeys(password);
     }
+    public String firstNameAlert()
+    {
+     return firstnameAlert.getText();
+    }
+    public  String lastNameAlert()
+    {
+     return lastNameAlert.getText();
+    }
+    public String adressAlert()
+    {
+        return adressAlert.getText();
+    }
 
-
+    public String phoneAlert()
+    {
+        return phoneAlert.getText();
+    }
+    public String emailAlert()
+    {
+        return emailAlert.getText();
+    }
+    public String passwordAlert()
+    {
+        return passwordAlert.getText();
+    }
+    public String rePasswordAlert()
+    {
+        return rePasswordAlert.getText();
+    }
+    //*[@id="registerForm"]/div[3]/div[2]/div/span[1]
+    @FindBy(xpath = "//*[@id=\"registerForm\"]/div[3]/div[2]/div/span[1]")
+    WebElement rePasswordAlert;
+    @FindBy(xpath = "//*[@id=\"registerForm\"]/div[3]/div[1]/div/span[1]")
+    WebElement passwordAlert;
+    @FindBy(xpath = "//*[@id=\"registerForm\"]/div[2]/div/div[2]/div[4]/div/span[2]")
+    WebElement emailAlert;
+    @FindBy(xpath = "//*[@id=\"registerForm\"]/div[2]/div/div[2]/div[3]/div/span[1]")
+    WebElement phoneAlert;
+    @FindBy(xpath="//*[@id=\"registerForm\"]/div[2]/div/div[2]/div[2]/div/span[1]")
+    WebElement adressAlert;
+    @FindBy(xpath="//*[@id=\"registerForm\"]/div[2]/div/div[1]/div[3]/div/span[1]")
+    WebElement lastNameAlert;
+    @FindBy(xpath = "//*[@id=\"registerForm\"]/div[2]/div/div[1]/div[1]/div/span[1]")
+    WebElement firstnameAlert;
     @FindBy(id = "signUpFirstName")
     WebElement firstName;
     @FindBy(id = "signUpmiddleName")
