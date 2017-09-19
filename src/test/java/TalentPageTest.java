@@ -40,9 +40,6 @@ public class TalentPageTest {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://52.53.181.39/sign-in.html"));
         Loginpage loginPage = new Loginpage(driver, TestConstants.availableEmail, TestConstants.password);
-        //Add the wrong user name
-        //loginPage.setEmailAddress(TestConstants.email);
-        //loginPage.setPassWord(TestConstants.password);
         loginPage.clickLogin();
         WebDriverWait wait1 = new WebDriverWait(driver, 10);
         wait1.until(ExpectedConditions.urlToBe("http://52.53.181.39/talents.html"));
@@ -55,10 +52,22 @@ public class TalentPageTest {
         tal.myprofile();
         WebDriverWait waitforViewProfile=new WebDriverWait(driver,10);
         waitforViewProfile.until(ExpectedConditions.urlToBe("http://52.53.181.39/my-profile.html"));
-        //Assert.assertEquals(driver.getCurrentUrl(),"http://52.53.181.39/my-profile.html");
+        WebElement name=driver.findElement(By.xpath("//*[@id=\"firstName\"]"));
+        String nameOfUser=name.getAttribute("value");
+        Assert.assertTrue(nameOfUser.contains("aneenag"));
+    }
+    @Test(expectedExceptions = {AssertionError.class})
+    public void viewprofilevalidation()
+    {
+        TalentPage tal=new TalentPage(driver);
+        tal.myprofile();
+        WebDriverWait waitforViewProfile=new WebDriverWait(driver,10);
+        waitforViewProfile.until(ExpectedConditions.urlToBe("http://52.53.181.39/my-profile.html"));
         WebElement name=driver.findElement(By.id("firstName"));
         String nameOfUser=name.getAttribute("value");
-        Assert.assertTrue(nameOfUser.contains("aneena"));
+        if(!nameOfUser.contains("aneenaggggg")){
+            Assert.fail("The name is incorrect");
+        }
     }
     @AfterMethod
     public void logout()
