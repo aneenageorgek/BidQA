@@ -56,6 +56,8 @@ public class TalentPageTest {
         String nameOfUser=name.getAttribute("value");
         Assert.assertTrue(nameOfUser.contains("aneenag"));
     }
+
+    //Username exception using assert.fail
     @Test(expectedExceptions = {AssertionError.class})
     public void viewprofilevalidation()
     {
