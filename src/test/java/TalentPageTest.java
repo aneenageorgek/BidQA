@@ -45,16 +45,34 @@ public class TalentPageTest {
         wait1.until(ExpectedConditions.urlToBe("http://52.53.181.39/talents.html"));
         Assert.assertEquals(driver.getCurrentUrl(), "http://52.53.181.39/talents.html");
     }
+
+    //T129190:Verify user can navigate to My Profile page
+    //Expected result:User should be navigated to "Profile" screen.
     @Test
-    public void viewprofile()
-    {
-        TalentPage tal=new TalentPage(driver);
+    public void viewprofile() {
+        TalentPage tal = new TalentPage(driver);
         tal.myprofile();
-        WebDriverWait waitforViewProfile=new WebDriverWait(driver,10);
+        WebDriverWait waitforViewProfile = new WebDriverWait(driver, 10);
         waitforViewProfile.until(ExpectedConditions.urlToBe("http://52.53.181.39/my-profile.html"));
-        WebElement name=driver.findElement(By.xpath("//*[@id=\"firstName\"]"));
-        String nameOfUser=name.getAttribute("value");
+    }
+
+    //T129191:Verify registered data is accurately displayed on My Profile page
+    //Expected result:Data on Profile page should accurately reflect input during registration.
+    @Test
+    public void profileValidation()
+    {
+        TalentPage tal = new TalentPage(driver);
+        tal.myprofile();
+        WebDriverWait waitforViewProfile = new WebDriverWait(driver, 10);
+        waitforViewProfile.until(ExpectedConditions.urlToBe("http://52.53.181.39/my-profile.html"));
+        String nameOfUser=tal.checkfirstname();
         Assert.assertTrue(nameOfUser.contains("aneenag"));
+        String lastNameUser=tal.checkLastname();
+        Assert.assertTrue(lastNameUser.contains("george"));
+        String nameOfcountry=tal.checkCountry();
+        Assert.assertTrue(nameOfcountry.contains("usa"));
+        String phoneNo=tal.checkPhone();
+        Assert.assertTrue(phoneNo.contains("(408) 802-4654"));
     }
 
     //Username exception using assert.fail
