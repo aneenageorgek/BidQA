@@ -10,7 +10,7 @@ import org.testng.annotations.DataProvider;
 
         public static Object[][] getlogData() {
             Object[][] data = new Object[1][8];
-            data[0][0] = RandomStringUtils.randomAlphabetic(7);
+            data[0][0] =RandomStringUtils.randomAlphabetic(7);
             data[0][1] = RandomStringUtils.randomAlphabetic(7);
             data[0][2] = RandomStringUtils.randomAlphabetic(7);
             data[0][3] = RandomStringUtils.randomAlphabetic(7);

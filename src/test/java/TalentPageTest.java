@@ -33,6 +33,8 @@ public class TalentPageTest {
         driver = new ChromeDriver(capabilities);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+    //T129168:Verify Login button is functional.
+    //Expected result:Login button should be clickable and functional.User is redirected to Talents home page.
     @BeforeMethod
     public  void setup()
     {

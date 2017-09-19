@@ -43,6 +43,9 @@ public class Registrationvalidation
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Loginpage page = new Loginpage(driver);
         page.createAccount();
+        WebDriverWait waitforregistration = new WebDriverWait(driver, 10);
+        waitforregistration.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-up.html"));
+        Assert.assertEquals(driver.getCurrentUrl(),"http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-up.html");
     }
 
     //T129370:Verify user cannot register with blank "First" name field

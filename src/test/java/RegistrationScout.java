@@ -48,6 +48,10 @@ public class RegistrationScout {
         newScout.createScoutaccount();
         //WebDriverWait waitForClick=new WebDriverWait(driver,10);
     }*/
+
+   //T129164:Verify user can create account after entering valid credentials in all required fields.
+   //Expected Result:User successfully creates account.User is redirected to the main (Sign In) page.
+   //Scout registration using dataprovider
     @Test(dataProviderClass = DataproviderRegistration.class,
             dataProvider= "RegistrationTestDataProvider", enabled=true, description="Login",groups={"Smoke"},priority=1)
     public void testWithDataProvider( String firstname,String middlename,String lastname,String countryname,
@@ -67,7 +71,6 @@ public class RegistrationScout {
         reg.setRegisterRePassword(currentPassword);
         reg.createScoutaccount();
         reg.createaccount();
-
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Assert.assertEquals(driver.getCurrentUrl(), "http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html");
@@ -75,11 +78,6 @@ public class RegistrationScout {
         log1.clickLogin();
         WebDriverWait wait1 = new WebDriverWait(driver, 10);
         wait1.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talents.html"));
-        TalentPage tal = new TalentPage(driver);
-        tal.talentClick();
-        tal.clickOkInDialog();
-        WebDriverWait wait2 = new WebDriverWait(driver, 10);
-        wait2.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talents.html"));
         Assert.assertEquals(driver.getCurrentUrl(), "http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talents.html");
     }
 

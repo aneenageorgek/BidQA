@@ -43,7 +43,7 @@ public class LoginPageTest {
     }
 
     //T129716:Verify user can Login in with valid Email and Password combination.
-    //Expected Result:1.User should successfully login to user account.2.User should be directed to the Talents home page.
+    //Expected Result:User should successfully login to user account.User should be directed to the Talents home page.
     //User successful Login using Dataprovider.
     @Test(dataProviderClass = Dataprovider.class,
             dataProvider= "LoginTestDataProvider", enabled=true, description="Login",groups={"Smoke"},priority=1)
@@ -149,7 +149,7 @@ public class LoginPageTest {
         TalentPage my=new TalentPage(driver);
         my.myprofile();
     }*/
-
+    //Close the driver
     @AfterClass
     public void finish()
     {

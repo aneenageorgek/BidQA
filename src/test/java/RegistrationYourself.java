@@ -52,8 +52,9 @@ public class RegistrationYourself {
         TalentPage talentPage = new TalentPage(driver);
         talentPage.logout();
     }
-
-    //Yourself Registration using Dtaprovider
+    //T129164:Verify user can create account after entering valid credentials in all required fields.
+    //Expected Result:User successfully creates account.User is redirected to the main (Sign In) page.
+    //Yourself Registration using Dataprovider
     @Test(dataProviderClass = DataproviderYours.class, dataProvider= "RegistrationTestDataProvideryours",
             enabled=true, description="Login",groups={"Smoke"},priority=1)
     public void testWithDataProvideryours( String firstname,String middlename,
@@ -90,17 +91,15 @@ public class RegistrationYourself {
         WebDriverWait waitAfterRadioClick = new WebDriverWait(driver, 10);
         yourself.clickOkInDialog();
         WebDriverWait waitFornextPage = new WebDriverWait(driver, 20);
-        waitFornextPage.until(ExpectedConditions.urlToBe("http://52.53.181.39/talent?fill=true"));
+        waitFornextPage.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talent.html?step=1"));
         String actual = driver.getCurrentUrl();
         //Assert.assertEquals(actual, "http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talent.html?step=2&id=1566");
-        Assert.assertTrue(actual.contains("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talent.html?step=2&id=1566"));
+        Assert.assertTrue(actual.contains("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talent.html?step=1"));
 
     }
-
-
     @AfterClass
     public void finish() {
-        driver.close();
+        //driver.close();
     }
 }
 
