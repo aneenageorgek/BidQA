@@ -20,8 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginPageTest {
     WebDriver driver;
-//Initialize the driver
 
+    //Initialize the driver
     @BeforeClass
     public void init() {
         Map<String, Object> prefs = new HashMap<String, Object>();
@@ -44,6 +44,7 @@ public class LoginPageTest {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
     }
+
     //T129716:Verify user can Login in with valid Email and Password combination.
     //Expected Result:1.User should successfully login to user account.2.User should be directed to the Talents home page.
     //User successful Login using Dataprovider.
@@ -55,6 +56,7 @@ public class LoginPageTest {
         TalentPage tal=new TalentPage(driver);
         tal.logout();
     }
+
     //T129170:Verify user can not login with an invalid password.
     //Expected Result:User should get an error message indicating "Invalid email or password" and not be able to login.
     //User cannot login with valid username and invalid password
@@ -70,6 +72,7 @@ public class LoginPageTest {
         Assert.assertEquals(log.getLoginAlert(), "Invalid Email or Password.");
         System.out.println("Unregistered user");
     }
+
     //T129717:Verify user cannot login with blank "Password" field:
     //Expected Result:User cannot log in to user account.User receives error message: "This value is required".
     // User login with valid username blank password
@@ -77,15 +80,13 @@ public class LoginPageTest {
     public void testBlankPassword() {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.blankemail, TestConstants.password1);
-        //Add the wrong user name
-        //loginPage.setEmailAddress(TestConstants.email);
-        //loginPage.setPassWord(TestConstants.password);
         log.clickLogin();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Assert.assertEquals(log.blankpassAlert(), "This value is required.");
         System.out.println("Unregistered user");
     }
+
     //T129166:Verify user cannot login with blank "Email" field.
     //Expected Result:User receives error message below the email field:"This value is required".
     //User login with blank username and valid password
@@ -93,15 +94,12 @@ public class LoginPageTest {
     public void testBlankEmail() {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.blankemail, TestConstants.password);
-        //Add the wrong user name
-        //loginPage.setEmailAddress(TestConstants.email);
-        //loginPage.setPassWord(TestConstants.password);
-        //log.clickLogin();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Assert.assertEquals(log.blankUsernameAlert(), "This value is required.");
         System.out.println("Unregistered user");
     }
+
     //T129169:Verify user cannot login with an invalid email address.
     //Expected Result:User should get an error message indicating "Invalid email or password" and not be able to login.
     //User Login with invalid username and valid password
@@ -109,9 +107,6 @@ public class LoginPageTest {
     public void testInvalidEmail() throws InterruptedException {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.email, TestConstants.password);
-        //Add the wrong user name
-        //loginPage.setEmailAddress(TestConstants.email);
-        //loginPage.setPassWord(TestConstants.password);
         log.clickLogin();
         Thread.sleep(10000);
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -124,9 +119,6 @@ public class LoginPageTest {
     public void testInvalidEmailPassword() throws InterruptedException {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.email, TestConstants.invalidpassword);
-        //Add the wrong user name
-        //loginPage.setEmailAddress(TestConstants.email);
-        //loginPage.setPassWord(TestConstants.password);
         log.clickLogin();
         Thread.sleep(10000);
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -147,18 +139,7 @@ public class LoginPageTest {
         Assert.assertEquals(log.blankpassAlert(), "This value is required.");
         System.out.println("Unregistered user");
     }
-    /* @Test
-    public void testSuccessfulLogin(){
-        //Creating instance of loginPage
-        Loginpage loginPage = new Loginpage(driver,TestConstants.availableEmail, TestConstants.password);
-        //Add the wrong user name
-        //loginPage.setEmailAddress(TestConstants.email);
-        //loginPage.setPassWord(TestConstants.password);
-        loginPage.clickLogin();
-        WebDriverWait wait1 = new WebDriverWait(driver, 10);
-        wait1.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talents.html"));
-        Assert.assertEquals(driver.getCurrentUrl(), "http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talents.html");
-    }*/
+
    /*@AfterMethod
     public void logout()
     {
