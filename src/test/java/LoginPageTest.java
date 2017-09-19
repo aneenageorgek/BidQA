@@ -44,8 +44,9 @@ public class LoginPageTest {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
     }
-
-    //User successful registration using Dataprovider
+    //T129716:Verify user can Login in with valid Email and Password combination.
+    //Expected Result:1.User should successfully login to user account.2.User should be directed to the Talents home page.
+    //User successful Login using Dataprovider.
     @Test(dataProviderClass = Dataprovider.class,
             dataProvider= "LoginTestDataProvider", enabled=true, description="Login",groups={"Smoke"},priority=1)
     public void testWithDataProvider(String username, String password) {
@@ -54,8 +55,9 @@ public class LoginPageTest {
         TalentPage tal=new TalentPage(driver);
         tal.logout();
     }
-
-    //User login with valid username and invalid password
+    //T129170:Verify user can not login with an invalid password.
+    //Expected Result:User should get an error message indicating "Invalid email or password" and not be able to login.
+    //User cannot login with valid username and invalid password
     @Test(priority = 2)
     public void testInvalidPassword() throws InterruptedException {
         //Creating instance of loginPage
@@ -68,7 +70,8 @@ public class LoginPageTest {
         Assert.assertEquals(log.getLoginAlert(), "Invalid Email or Password.");
         System.out.println("Unregistered user");
     }
-
+    //T129717:Verify user cannot login with blank "Password" field:
+    //Expected Result:User cannot log in to user account.User receives error message: "This value is required".
     // User login with valid username blank password
     @Test(priority = 3)
     public void testBlankPassword() {
@@ -83,7 +86,8 @@ public class LoginPageTest {
         Assert.assertEquals(log.blankpassAlert(), "This value is required.");
         System.out.println("Unregistered user");
     }
-
+    //T129166:Verify user cannot login with blank "Email" field.
+    //Expected Result:User receives error message below the email field:"This value is required".
     //User login with blank username and valid password
     @Test(priority = 4)
     public void testBlankEmail() {
@@ -98,8 +102,9 @@ public class LoginPageTest {
         Assert.assertEquals(log.blankUsernameAlert(), "This value is required.");
         System.out.println("Unregistered user");
     }
-
-    //User LOgin with invalid username and valid password
+    //T129169:Verify user cannot login with an invalid email address.
+    //Expected Result:User should get an error message indicating "Invalid email or password" and not be able to login.
+    //User Login with invalid username and valid password
     @Test(priority = 5)
     public void testInvalidEmail() throws InterruptedException {
         //Creating instance of loginPage
@@ -114,6 +119,7 @@ public class LoginPageTest {
         Assert.assertEquals(log.userAlert(), "Invalid Email or Password.");
         System.out.println("Unregistered user");
     }
+    //user cannot login with invalid username and invalid password
     @Test(priority = 6)
     public void testInvalidEmailPassword() throws InterruptedException {
         //Creating instance of loginPage
@@ -129,7 +135,7 @@ public class LoginPageTest {
         System.out.println("Unregistered user");
     }
 
-
+    //User cannot login with blank username and blank password.
     @Test(priority = 7)
     public void testBlankEmailPassword() {
         //Creating instance of loginPage
