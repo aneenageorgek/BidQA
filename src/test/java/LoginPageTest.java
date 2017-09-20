@@ -48,6 +48,7 @@ public class LoginPageTest {
     @Test(dataProviderClass = Dataprovider.class,
             dataProvider= "LoginTestDataProvider", enabled=true, description="Login",groups={"Smoke"},priority=1)
     public void testWithDataProvider(String username, String password) {
+        //create instance of login page
         Loginpage log = new Loginpage(driver, username, password);
         log.clickLogin();
         TalentPage tal=new TalentPage(driver);
@@ -61,8 +62,9 @@ public class LoginPageTest {
     public void testInvalidPassword() throws InterruptedException {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.availableEmail, TestConstants.invalidpassword);
-        //Add the wrong user name
+        //Add the wrong password
         log.clickLogin();
+        //wait for locating the error message
         Thread.sleep(10000);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
@@ -78,6 +80,7 @@ public class LoginPageTest {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.blankemail, TestConstants.password1);
         log.clickLogin();
+        //wait for sign-in url
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Assert.assertEquals(log.blankpassAlert(), "This value is required.");
@@ -91,6 +94,7 @@ public class LoginPageTest {
     public void testBlankEmail() {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.blankemail, TestConstants.password);
+        //wait for sign-in url
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Assert.assertEquals(log.blankUsernameAlert(), "This value is required.");
@@ -105,18 +109,21 @@ public class LoginPageTest {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.email, TestConstants.password);
         log.clickLogin();
+        //wait for locating error message
         Thread.sleep(10000);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Assert.assertEquals(log.userAlert(), "Invalid Email or Password.");
         System.out.println("Unregistered user");
     }
+
     //user cannot login with invalid username and invalid password
     @Test(priority = 6)
     public void testInvalidEmailPassword() throws InterruptedException {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.email, TestConstants.invalidpassword);
         log.clickLogin();
+        //wait for locating error message
         Thread.sleep(10000);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
@@ -130,6 +137,7 @@ public class LoginPageTest {
         //Creating instance of loginPage
         Loginpage log = new Loginpage(driver,TestConstants.blankemail, TestConstants.password1);
         log.clickLogin();
+        //wait for sign-in url
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlToBe("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html"));
         Assert.assertEquals(log.blankUsernameAlert(), "This value is required.");
@@ -143,12 +151,7 @@ public class LoginPageTest {
         TalentPage tal=new TalentPage(driver);
         tal.logout();
     }*/
-    /*@AfterMethod
-    public void myProfil()
-    {
-        TalentPage my=new TalentPage(driver);
-        my.myprofile();
-    }*/
+
     //Close the driver
     @AfterClass
     public void finish()
