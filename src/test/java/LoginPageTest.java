@@ -144,14 +144,7 @@ public class LoginPageTest {
         Assert.assertEquals(log.blankpassAlert(), "This value is required.");
         System.out.println("Unregistered user");
     }
-
-   /*@AfterMethod
-    public void logout()
-    {
-        TalentPage tal=new TalentPage(driver);
-        tal.logout();
-    }*/
-
+    
     //Close the driver
     @AfterClass
     public void finish()
