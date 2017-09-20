@@ -42,12 +42,6 @@ public class RegistrationScout {
         Loginpage page = new Loginpage(driver);
         page.createAccount();
     }
-   /*( @Test
-    public void scoutRegistration() {
-        Registration newScout = new Registration(driver);
-        newScout.createScoutaccount();
-        //WebDriverWait waitForClick=new WebDriverWait(driver,10);
-    }*/
 
    //T129164:Verify user can create account after entering valid credentials in all required fields.
    //Expected Result:User successfully creates account.User is redirected to the main (Sign In) page.
@@ -81,13 +75,14 @@ public class RegistrationScout {
         Assert.assertEquals(driver.getCurrentUrl(), "http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/talents.html");
     }
 
-    @AfterMethod
     //Initailize the logout page
+    @AfterMethod
     public void logout() {
         TalentPage talentPage = new TalentPage(driver);
         talentPage.logout();
     }
 
+    //initialize to close the driver
     @AfterClass
     public void finish(){
         driver.close();
