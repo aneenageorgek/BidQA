@@ -73,8 +73,6 @@ public class Loginpage {
     public void clickLogin(){ loginButton.click(); }
     public void createAccount() {register.click();}
 
-
-    //public String forgotAlert(){ return invalidpasswordAlert.getText(); }
 }
 
 
