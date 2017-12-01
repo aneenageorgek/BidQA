@@ -8,10 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 public class Loginpage {
 
     WebDriver driver;
-
+//helooooooooooooooooooo
     @FindBy(xpath="/html/body/app/ui-view/auth-zone/div/ui-view/sign-in-form/spinner-container/div[1]/div/div/form/div[1]/input")
     WebElement loginEmail;
-
+    @FindBy(xpath="/html/body/app/ui-view/auth-zone/div/ui-view/sign-in-form/spinner-container/div[1]/div/div/form/div[1]/input")
+    WebElement loginEmail9;
+    @FindBy(xpath="/html/body/app/ui-view/auth-zone/div/ui-view/sign-in-form/spinner-container/div[1]/div/div/form/div[1]/input")
+    WebElement loginEmail2;
     @FindBy(xpath="/html/body/app/ui-view/auth-zone/div/ui-view/sign-in-form/spinner-container/div[1]/div/div/form/div[2]/input")
     WebElement passWord;
 
@@ -50,7 +53,7 @@ public class Loginpage {
         loginEmail.sendKeys(userName);
         passWord.sendKeys(password);
     }
-    /*public void setEmailAddress(String emailAddress){
+    public void setEmailAddress(String emailAddress){
         loginEmail.sendKeys(emailAddress);
     }
 
@@ -64,7 +67,7 @@ public class Loginpage {
 
     public String getPassword(){
         return passWord.getText();
-    }*/
+    }
 
     public String userAlert(){ return invalidUserAlert.getText(); }
     public String getLoginAlert(){ return invalidpasswordAlert.getText(); }
